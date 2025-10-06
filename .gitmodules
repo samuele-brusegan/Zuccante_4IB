@@ -1,3 +1,6 @@
 [submodule "utilities"]
 	path = RubricaConNodi/src
 	url = https://github.com/samuele-brusegan/utilities.git
+[submodule "RubricaConNodi/src/utilities"]
+	path = RubricaConNodi/src/utilities
+	url = https://github.com/samuele-brusegan/
