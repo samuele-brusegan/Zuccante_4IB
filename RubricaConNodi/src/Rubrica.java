@@ -1,5 +1,10 @@
 import List.Nodo;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 public class Rubrica {
 
     //Aggiunta Ordinata
@@ -27,12 +32,13 @@ public class Rubrica {
     @SuppressWarnings("DuplicatedCode")
     public String toString() {
         Nodo<Persona> n = this.head;
-        String out = "{ ";
+        StringBuilder outBuilder = new StringBuilder("{ ");
         for (int i = 0; n != null; i++) {
-            out += n.toString();
+            outBuilder.append(n.toString());
             n = n.getNext();
-            if ( n != null ) out += ", ";
+            if ( n != null ) outBuilder.append(", ");
         }
+        String out = outBuilder.toString();
         out += " }";
         return out;
     }
@@ -112,5 +118,31 @@ public class Rubrica {
         }
 
         return false;
+    }
+
+    public boolean export(String filename) {
+
+        //Se il filename non finisce per .csv aggiungo .csv
+        if (!filename.toLowerCase().endsWith(".csv")) {
+            filename += ".csv";
+        }
+
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
+
+            Nodo<Persona> i = this.head;
+            while ( i != null ) {
+                String out = i.get().toCSV();
+                bw.write(out);
+                i = i.getNext();
+            }
+
+            bw.close();
+            return true;
+
+        } catch (IOException e) {
+            return false;
+        }
     }
 }

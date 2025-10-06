@@ -21,7 +21,6 @@ public class Main {
             r.add(new Persona(p[0], p[1], std_mail, std_tel));
         }
 
-        //Todo:
         menu(r);
     }
 
@@ -31,13 +30,14 @@ public class Main {
         System.out.println("2. Rimuovi contatto");
         System.out.println("3. Cerca contatto");
         System.out.println("4. Visualizza lista");
-        System.out.println("5. Esci");
+        System.out.println("5. Esporta in CSV");
+        System.out.println("6. Esci");
         System.out.println();
 
         String in = input("Seleziona la funzione: ", "");
         System.out.println();
 
-        if (in.equals("5")) {
+        if (in.equals("6")) {
             System.out.println("Arrivederci e a presto!");
             return;
         }
@@ -84,6 +84,13 @@ public class Main {
                 System.out.println("== Visualizza lista ==");
 
                 System.out.println(r);
+            }
+            case "5" -> {
+                System.out.println("== Esporta in CSV ==");
+                String fname = input("Inserisci il nome del file CSV: ", "");
+
+                if(r.export(fname)) System.out.println("La rubrica è stata esportata correttamente");
+                else                System.out.println("C'è stato un errore nell'esportazione della rubrica");
             }
             default -> System.err.println("Opid non valido");
         }

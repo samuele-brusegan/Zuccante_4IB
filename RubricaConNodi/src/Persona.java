@@ -23,4 +23,8 @@ public class Persona {
     public boolean isLowerThan(Persona p) {
         return !(this.getFullName().compareTo(p.getFullName()) > 0);
     }
+
+    public String toCSV() {
+        return name + ", " +  surname + ", " + email + ", " + phone + "\n";
+    }
 }
