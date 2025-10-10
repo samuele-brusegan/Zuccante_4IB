@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataStructure_Queque/DataStructure_Queque.iml" filepath="$PROJECT_DIR$/DataStructure_Queque/DataStructure_Queque.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure_Stack/DataStructure_Stack.iml" filepath="$PROJECT_DIR$/DataStructure_Stack/DataStructure_Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExpressionEvaluator/ExpressionEvaluator.iml" filepath="$PROJECT_DIR$/ExpressionEvaluator/ExpressionEvaluator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RubricaConNodi/RubricaConNodi.iml" filepath="$PROJECT_DIR$/RubricaConNodi/RubricaConNodi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Zuccante_4IB.iml" filepath="$PROJECT_DIR$/.idea/Zuccante_4IB.iml" />
+    </modules>
+  </component>
+</project>
