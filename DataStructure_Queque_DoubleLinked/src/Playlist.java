@@ -1,8 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class Playlist<T> {
     private NodoImpl<T> head;
@@ -17,26 +13,37 @@ public class Playlist<T> {
     public void addAsNext(T brano) {
         NodoImpl<T> newNode = new NodoImpl<>(brano);
 
-        if(head == null){
+        if (head == null) {
             head = newNode;
+            curr = newNode;
+            this.len++;
+            return;
+        }
+
+        if (curr.getNext() == null) {
+            curr.setNext(newNode);
+            newNode.setPrev(curr);
+            this.len++;
             return;
         }
 
         newNode.setNext(curr.getNext());
         curr.setNext(newNode);
         newNode.setPrev(curr);
+        System.out.println(newNode);
         newNode.getNext().setPrev(newNode);
         this.len++;
     }
     public void addAsPrev(T brano) {
         NodoImpl<T> newNode = new NodoImpl<>(brano);
-        if(head == null){
+        if (head == null) {
             head = newNode;
+            curr = newNode;
             this.len++;
             return;
         }
 
-        if(curr == head) {
+        if (curr == head) {
             newNode.setNext(head);
             head.setPrev(newNode);
             head = newNode;
@@ -55,30 +62,28 @@ public class Playlist<T> {
         return curr.get().toString();
 
     }
-
     public void forward() {
-        if(curr.getNext() != null){
+        if (curr.getNext() != null) {
             curr = curr.getNext();
         }
     }
     public void backward() {
-        if(curr.getPrev() != null){
+        if (curr.getPrev() != null) {
             curr = curr.getPrev();
         }
     }
-
     public void rmCurr() {
-        if( (curr.getPrev() == null && curr.getNext() == null) || curr == null) {
+        if ((curr.getPrev() == null && curr.getNext() == null) || curr == null) {
             curr = null;
             this.len = 0;
             return;
         }
 
-        if(curr.getPrev() == null) {
+        if (curr.getPrev() == null) {
             curr = curr.getNext();
             curr.setPrev(null);
         }
-        if(curr.getNext() == null) {
+        if (curr.getNext() == null) {
             curr = curr.getPrev();
             curr.setNext(null);
         }
@@ -87,40 +92,49 @@ public class Playlist<T> {
         curr = curr.getNext();
         this.len--;
     }
-
     public int size() {
         return this.len;
 
     }
-
     public boolean isEmpty() {
         return (this.len == 0);
 
     }
-
     public void exportFile(String filename) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            NodoImpl<T> current = head;
-            while (current != null) {
-                writer.println(current.get().toString());
-                current = current.getNext();
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing to file: " + e.getMessage());
-        }
-    }
 
-    //TODO: finish this method
+        //Encode in CSV il brano
+        NodoImpl<Brano> i = (NodoImpl<Brano>) this.head;
+        while (i != null) {
+            
+            String branoCSV = i.get().getTitolo() + "," + i.get().getArtista();
+            
+            //Scrivo su file
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));
+                
+                bw.write(branoCSV);
+                bw.newLine();
+                bw.close();
+                
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+            i = i.getNext();
+        }
+
+    }
     public void importFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    addAsNext((T) line);
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 2) {
+                    Brano brano = new Brano(parts[0], parts[1]);
+                    this.addAsNext((T) brano);
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading from file: " + e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -131,7 +145,7 @@ public class Playlist<T> {
         for (int i = 0; n != null; i++) {
             out.append(n.get().toString());
             n = n.getNext();
-            if ( n != null ) out.append(", ");
+            if (n != null) out.append(", ");
         }
         out.append(" }");
         return out.toString();
@@ -151,6 +165,7 @@ class NodoImpl<T> {
     public void setNext(NodoImpl<T> n) {
         this.next = n;
     }
+
     public NodoImpl<T> getNext() {
         return next;
     }
@@ -158,6 +173,7 @@ class NodoImpl<T> {
     public void setPrev(NodoImpl<T> n) {
         this.prev = n;
     }
+
     public NodoImpl<T> getPrev() {
         return prev;
     }
@@ -172,7 +188,10 @@ class NodoImpl<T> {
 
     @Override
     public String toString() {
-        return val+"";
+        String out = "NodoImpl{" + "hashCode=" + hashCode();
+        if (next != null) out += ", next=" + next.hashCode();
+        if (prev != null) out += ", prev=" + prev.hashCode();
+        out += ", val=" + val + '}';
+        return out;
     }
-
 }
