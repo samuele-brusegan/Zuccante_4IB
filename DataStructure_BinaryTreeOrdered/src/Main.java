@@ -1,14 +1,14 @@
 import java.util.*;
 
 public class Main {
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET  = "\u001B[0m";
+    private static final String ANSI_GREEN  = "\u001B[32m";
+    private static final String ANSI_RED    = "\u001B[31m";
     private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_BLUE   = "\u001B[34m";
     private static final String ANSI_PURPLE = "\u001B[35m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_BOLD = "\u001B[1m";
+    private static final String ANSI_CYAN   = "\u001B[36m";
+    private static final String ANSI_BOLD   = "\u001B[1m";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -16,10 +16,10 @@ public class Main {
         printHeader();
 
         System.out.println("\n" + ANSI_CYAN + "╔════════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + "║  Cosa vuoi fare?                       ║" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + "╚════════════════════════════════════════╝" + ANSI_RESET);
-        System.out.println(ANSI_YELLOW + "1." + ANSI_RESET + " Esegui test automatici");
-        System.out.println(ANSI_YELLOW + "2." + ANSI_RESET + " Usa l'albero interattivamente");
+        System.out.println(       ANSI_CYAN + "║  Cosa vuoi fare?                       ║" + ANSI_RESET);
+        System.out.println(       ANSI_CYAN + "╚════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(     ANSI_YELLOW + "1." + ANSI_RESET + " Esegui test automatici");
+        System.out.println(     ANSI_YELLOW + "2." + ANSI_RESET + " Usa l'albero interattivamente");
         System.out.print("\nScelta: ");
 
         int choice = scanner.nextInt();
@@ -58,11 +58,11 @@ public class Main {
         totalTests++;
         BinaryTree<Integer> tree1 = new BinaryTree<>();
         tree1.root = new NodoImpl<>(50);
-        if (tree1.root != null && tree1.root.get() == 50) {
+        if (tree1.root.get() == 50) {
             printTestResult(true, "Root inserita correttamente: 50", null);
             passedTests++;
         } else {
-            String debug = "Valore root attuale: " + (tree1.root == null ? "null" : tree1.root.get());
+            String debug = "Valore root attuale: " + tree1.root.get();
             printTestResult(false, "Root non inserita correttamente", debug);
         }
 
@@ -73,7 +73,7 @@ public class Main {
         totalTests++;
         BinaryTree<Integer> tree2 = new BinaryTree<>();
         tree2.root = new NodoImpl<>(50);
-        tree2.addInOrder(30);  // Dovrebbe andare a sinistra
+        tree2.addInOrder(40);  // Dovrebbe andare a sinistra
         tree2.addInOrder(70);  // Dovrebbe andare a destra
 
         boolean test2Passed = tree2.root.getSx() != null && tree2.root.getSx().get() == 30 &&

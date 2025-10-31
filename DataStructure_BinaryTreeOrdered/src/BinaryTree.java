@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinaryTree<T extends Comparable<T>> {
@@ -88,73 +89,97 @@ public class BinaryTree<T extends Comparable<T>> {
 
     @Override
     public String toString() {
-        if (root == null) {
-            return "╔═══════════════════════════════════╗\n" +
-                    "║     BINARY SEARCH TREE            ║\n" +
-                    "╚═══════════════════════════════════╝\n\n" +
-                    "Albero vuoto\n";
-        }
-
+        if (root == null) return "Albero vuoto";
+    
         StringBuilder sb = new StringBuilder();
-        sb.append("╔═══════════════════════════════════╗\n");
-        sb.append("║     BINARY SEARCH TREE            ║\n");
-        sb.append("╚═══════════════════════════════════╝\n\n");
-
-        buildTreeString(root, sb, "", "", "");
-
+        int height = getHeight(root);
+        // Calcola la larghezza necessaria considerando gli spazi extra per l'ultimo livello
+        int leafNodes = (int) Math.pow(2, height - 1);
+        int maxWidth = leafNodes * 3 + (leafNodes - 1) * 2; // 3 caratteri per nodo (spazio+valore+spazio) + 2 spazi tra nodi
+    
+        List<List<String>> lines = new ArrayList<>();
+        buildLines(root, 0, 0, maxWidth - 1, maxWidth, lines, height);
+    
+        for (List<String> line : lines) {
+            for (String s : line) {
+                sb.append(s);
+            }
+            sb.append("\n");
+        }
+    
         return sb.toString();
     }
 
-    private void buildTreeString(NodoImpl<T> node, StringBuilder sb, String prefix, String childPrefix, String nodePrefix) {
-        if (node == null) return;
-
-        sb.append(prefix);
-        sb.append(nodePrefix);
-        sb.append(node.get());
-        sb.append("\n");
-
-        List<NodoImpl<T>> children = new ArrayList<>();
-        if (node.getSx() != null) children.add(node.getSx());
-        if (node.getDx() != null) children.add(node.getDx());
-
-        for (int i = 0; i < children.size(); i++) {
-            boolean isLast = (i == children.size() - 1);
-            String newPrefix = childPrefix + (isLast ? "└── " : "├── ");
-            String newChildPrefix = childPrefix + (isLast ? "    " : "│   ");
-
-            buildTreeString(children.get(i), sb, newPrefix, newChildPrefix, "");
-        }
-    }
-
-    private void collectNodesByLevel(NodoImpl<T> node, List<List<NodePosition>> levels, int level, int position) {
-        if (node == null) return;
-
-        // Assicurati che la lista abbia abbastanza livelli
-        while (levels.size() <= level) {
-            levels.add(new ArrayList<>());
-        }
-
-        levels.get(level).add(new NodePosition(node, position));
-
-        // Visita i figli
-        collectNodesByLevel(node.getSx(), levels, level + 1, position * 2);
-        collectNodesByLevel(node.getDx(), levels, level + 1, position * 2 + 1);
-    }
-
-    private int calculateWidth(NodoImpl<T> node) {
+    private int getHeight(NodoImpl<T> node) {
         if (node == null) return 0;
-        if (node.getSx() == null && node.getDx() == null) return 1;
-        return calculateWidth(node.getSx()) + calculateWidth(node.getDx());
+        return 1 + Math.max(getHeight(node.getSx()), getHeight(node.getDx()));
     }
 
-    // Classe helper per tenere traccia dei nodi e delle loro posizioni
-    private class NodePosition {
-        NodoImpl<T> node;
-        int position;
-
-        NodePosition(NodoImpl<T> node, int position) {
-            this.node = node;
-            this.position = position;
+    private void buildLines(NodoImpl<T> node, int level, int left, int right, int width, List<List<String>> lines, int maxHeight) {
+        if (node == null) return;
+    
+        // Assicura che ci siano abbastanza righe (sia per il nodo che per i collegamenti)
+        while (lines.size() <= level * 2 + 1) {
+            List<String> newLine = new ArrayList<>();
+            for (int i = 0; i < width; i++) {
+                newLine.add(" ");
+            }
+            lines.add(newLine);
+        }
+    
+        // Calcola la posizione centrale
+        int mid = (left + right) / 2;
+        
+        // Inserisce il valore del nodo
+        String nodeStr = node.get().toString();
+        
+        // Determina se questo è l'ultimo livello
+        boolean isLastLevel = (level == maxHeight - 1);
+        
+        // Se è l'ultimo livello, aggiungi spazi prima e dopo
+        if (isLastLevel) {
+            nodeStr = " " + nodeStr + " ";
+        }
+        
+        // Centra il nodo nella sua posizione
+        int startPos = mid - nodeStr.length() / 2;
+        startPos = Math.max(0, Math.min(width - nodeStr.length(), startPos));
+    
+        for (int i = 0; i < nodeStr.length() && startPos + i < width; i++) {
+            lines.get(level * 2).set(startPos + i, String.valueOf(nodeStr.charAt(i)));
+        }
+    
+        // Disegna i collegamenti e i figli
+        if (node.getSx() != null) {
+            int leftChildMid = (left + mid - 1) / 2;
+        
+            // Disegna la linea verso sinistra
+            for (int i = leftChildMid + 1; i < mid && i < width; i++) {
+                if (lines.get(level * 2 + 1).get(i).equals(" ")) {
+                    lines.get(level * 2 + 1).set(i, "-");
+                }
+            }
+            if (leftChildMid < width) {
+                lines.get(level * 2 + 1).set(leftChildMid, "+");
+            }
+        
+            buildLines(node.getSx(), level + 1, left, mid - 1, width, lines, maxHeight);
+        }
+    
+        if (node.getDx() != null) {
+            int rightChildMid = (mid + 1 + right) / 2;
+        
+            // Disegna la linea verso dest                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ra
+            for (int i = mid + 1; i < rightChildMid && i < width; i++) {
+                if (lines.get(level * 2 + 1).get(i).equals(" ")) {
+                    lines.get(level * 2 + 1).set(i, "-");
+                }
+            }
+            if (rightChildMid < width) {
+                lines.get(level * 2 + 1).set(rightChildMid, "+");
+            }
+        
+            buildLines(node.getDx(), level + 1, mid + 1, right, width, lines, maxHeight);
         }
     }
 }
