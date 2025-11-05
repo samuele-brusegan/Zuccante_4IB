@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BinaryTree<T extends Comparable<T>> {
@@ -18,11 +17,10 @@ public class BinaryTree<T extends Comparable<T>> {
         else        refToParent.setDx(newNode);
     }
 
-    public boolean addInOrder(T val){
-        if (root == null) { root = new NodoImpl<>(val); return true; }
-        return addInOrder(root, val);
+    public  void    addInOrder(T val){
+        if (root == null) { root = new NodoImpl<>(val); return; }
+        addInOrder(root, val);
     }
-
     private boolean addInOrder(NodoImpl<T> subRootTree, T val){
 
         //Se val è maggiore o uguale di subRootTree.get() allora lo aggiungo a dx
@@ -77,6 +75,14 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
 
+    /**
+     * Searches for a reference to a node containing the specified value in the binary tree.
+     * The search starts from the given subtree root and traverses recursively.
+     *
+     * @param searchTreeRoot the root of the subtree where the search begins; can be null
+     * @param val the value to be searched for in the binary tree
+     * @return a reference to the node containing the specified value if found; null otherwise
+     */
     private NodoImpl<T> findRefToNode(NodoImpl<T> searchTreeRoot, T val){
         if(searchTreeRoot == null) return null;
         if (searchTreeRoot.get().equals(val)) return searchTreeRoot;
@@ -87,6 +93,7 @@ public class BinaryTree<T extends Comparable<T>> {
         return findRefToNode(searchTreeRoot.getSx(), val);
     }
 
+    //To string
     @Override
     public String toString() {
         if (root == null) return "Albero vuoto";
@@ -109,12 +116,10 @@ public class BinaryTree<T extends Comparable<T>> {
     
         return sb.toString();
     }
-
     private int getHeight(NodoImpl<T> node) {
         if (node == null) return 0;
         return 1 + Math.max(getHeight(node.getSx()), getHeight(node.getDx()));
     }
-
     private void buildLines(NodoImpl<T> node, int level, int left, int right, int width, List<List<String>> lines, int maxHeight) {
         if (node == null) return;
     
@@ -182,6 +187,138 @@ public class BinaryTree<T extends Comparable<T>> {
             buildLines(node.getDx(), level + 1, mid + 1, right, width, lines, maxHeight);
         }
     }
+
+    /**
+     * Searches for the specified value in the binary tree.
+     * The search starts from the root of the tree and traverses recursively through its nodes.
+     *
+     * @param val the value to be searched for in the binary tree
+     * @return true if the value is found in the binary tree, false otherwise
+     */
+    //Altro
+    public boolean find(int val) {
+        if (root == null) return false;
+        return find(root, val);
+    }
+    private boolean find(NodoImpl<T> subTreeRoot, int val) {
+        if (subTreeRoot.get().equals(val)) return true;
+        return find(subTreeRoot.getSx(), val) || find(subTreeRoot.getDx(), val);
+    }
+
+    /**
+     * Counts the number of leaf nodes in the binary tree.
+     * A leaf node is defined as a node without any children.
+     *
+     * @return the count of leaf nodes in the binary tree. If the tree is empty, returns 0.
+     */
+    public int leafCounter(){
+        if (root == null) return 0;
+        return leafCounter(root);
+    }
+    private int leafCounter(NodoImpl<T> subTreeRoot) {
+        int counter = 0;
+        //Incremento del contatore
+        if (subTreeRoot.getSx() == null && subTreeRoot.getDx() == null) counter++;
+        //OPPURE ricorro
+        if (subTreeRoot.getSx() != null) counter += leafCounter(subTreeRoot.getSx());
+        if (subTreeRoot.getDx() != null) counter += leafCounter(subTreeRoot.getDx());
+        return counter;
+    }
+
+    /**
+     * Searches for a node with the specified value in the binary tree.
+     * The search starts from the root of the tree and traverses recursively.
+     *
+     * @param val the value of the node to be searched for in the binary tree
+     * @return the node containing the specified value if found; null otherwise
+     */
+    public NodoImpl<T> findNode(int val) {
+        if (root == null) return null;
+        return findNode(root, val);
+    }
+    private NodoImpl<T> findNode(NodoImpl<T> subTreeRoot, int val) {
+        if (subTreeRoot.get().equals(val)) return subTreeRoot;
+
+        NodoImpl<T> resL = findNode(subTreeRoot.getSx(), val);
+        NodoImpl<T> resR = findNode(subTreeRoot.getDx(), val);
+
+        if (resL != null) return resL;
+        if (resR != null) return resR;
+
+        return null;
+    }
+
+    /**
+     * Computes the height of the binary tree. The height of a binary tree is defined as
+     * the number of edges on the longest path from the root to a leaf node.
+     *
+     * @return the height of the binary tree. If the root is null (empty tree), returns 0.
+     */
+    public  int findHeight(){
+        if (root == null) return 0;
+        return findHeight(root);
+    }
+    private int findHeight(NodoImpl<T> subTreeRoot) {
+        if (subTreeRoot == null) return 0;
+        return 1 + Math.max(findHeight(subTreeRoot.getSx()), findHeight(subTreeRoot.getDx()));
+    }
+
+    /**
+     * Calculates the total number of nodes present in the binary tree.
+     *
+     * @return the total count of nodes in the tree. If the tree is empty, returns 0.
+     */
+    public  int howManyNodes(){
+        if (root == null) return 0;
+        return howManyNodes(root);
+    }
+    private int howManyNodes(NodoImpl<T> subTreeRoot) {
+        if (subTreeRoot == null) return 0;
+        return 1 + howManyNodes(subTreeRoot.getSx()) + howManyNodes(subTreeRoot.getDx());
+    }
+
+
+    /**
+     * Calculates the sum of all the node values in the binary tree.
+     *
+     * @return the total sum of all node values in the tree. If the tree is empty, returns 0.
+     */
+    public  int sumNodes(){
+        if (root == null) return 0;
+        return sumNodes(root);
+    }
+    private int sumNodes(NodoImpl<T> subTreeRoot) {
+        if(subTreeRoot == null) return 0;
+        return (Integer) subTreeRoot.get() + sumNodes(subTreeRoot.getSx()) + sumNodes(subTreeRoot.getDx());
+    }
+
+
+    /**
+     * Determines the level of a node containing the specified value in the binary tree.
+     * The level is defined as the distance (in edges) between the root and the node.
+     *
+     * @param needleVal the value of the node whose level needs to be determined
+     * @return the level of the node if it exists in the tree, or Integer.MAX_VALUE if the node
+     *         is not found
+     */
+    public  int getLevel(T needleVal){
+        NodoImpl<T> needle = findRefToNode(root, needleVal);
+        return getLevel(root, needle);
+    }
+    private int getLevel(NodoImpl<T> subTreeRoot, NodoImpl<T> needle) {
+        if (subTreeRoot == null) return Integer.MAX_VALUE;
+        if (subTreeRoot == needle) return 0;
+
+        int resL = 1 + getLevel(subTreeRoot.getSx(), needle);
+        int resR = 1 + getLevel(subTreeRoot.getDx(), needle);
+
+        if (resL != Integer.MAX_VALUE) return resL;
+        if (resR != Integer.MAX_VALUE) return resR;
+
+        //Se non ho trovato il nodo
+        return Integer.MAX_VALUE;
+    }
+
 }
 
 class NodoImpl<T> {
