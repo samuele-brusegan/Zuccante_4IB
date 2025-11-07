@@ -1,3 +1,5 @@
+import BST.*;
+
 import java.util.*;
 
 public class Main {
@@ -56,13 +58,13 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 1: Creazione albero e inserimento root" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<Integer> tree1 = new BinaryTree<>();
-        tree1.root = new NodoImpl<>(50);
-        if (tree1.root.get() == 50) {
+        BinarySearchTree<Integer> tree1 = new BinarySearchTree<>();
+        tree1.add(null, 50, true);
+        if (tree1.getRoot().get() == 50) {
             printTestResult(true, "Root inserita correttamente: 50", null);
             passedTests++;
         } else {
-            String debug = "Valore root attuale: " + tree1.root.get();
+            String debug = "Valore root attuale: " + tree1.getRoot().get();
             printTestResult(false, "Root non inserita correttamente", debug);
         }
 
@@ -71,20 +73,20 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 2: Inserimento ordinato - valori base" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<Integer> tree2 = new BinaryTree<>();
-        tree2.root = new NodoImpl<>(50);
+        BinarySearchTree<Integer> tree2 = new BinarySearchTree<>();
+        tree2.add(null, 50, true);
         tree2.addInOrder(40);  // Dovrebbe andare a sinistra
         tree2.addInOrder(70);  // Dovrebbe andare a destra
 
-        boolean test2Passed = tree2.root.getSx() != null && tree2.root.getSx().get() == 30 &&
-                tree2.root.getDx() != null && tree2.root.getDx().get() == 70;
+        boolean test2Passed = tree2.getRoot().getSx() != null && tree2.getRoot().getSx().get() == 30 &&
+                tree2.getRoot().getDx() != null && tree2.getRoot().getDx().get() == 70;
 
         if (!test2Passed) {
             StringBuilder debug = new StringBuilder();
             debug.append("\n  Stato albero:\n");
-            debug.append("  Root: ").append(tree2.root.get()).append("\n");
-            debug.append("  Figlio sinistro: ").append(tree2.root.getSx() == null ? "null" : tree2.root.getSx().get()).append(" (atteso: 30)\n");
-            debug.append("  Figlio destro: ").append(tree2.root.getDx() == null ? "null" : tree2.root.getDx().get()).append(" (atteso: 70)");
+            debug.append("  Root: ").append(tree2.getRoot().get()).append("\n");
+            debug.append("  Figlio sinistro: ").append(tree2.getRoot().getSx() == null ? "null" : tree2.getRoot().getSx().get()).append(" (atteso: 30)\n");
+            debug.append("  Figlio destro: ").append(tree2.getRoot().getDx() == null ? "null" : tree2.getRoot().getDx().get()).append(" (atteso: 70)");
             printTestResult(false, "30 a sinistra, 70 a destra", debug.toString());
         } else {
             printTestResult(true, "30 a sinistra, 70 a destra", null);
@@ -96,8 +98,8 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 3: Inserimento multiplo ordinato" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<Integer> tree3 = new BinaryTree<>();
-        tree3.root = new NodoImpl<>(50);
+        BinarySearchTree<Integer> tree3 = new BinarySearchTree<>();
+        tree3.add(null, 50, true);
         tree3.addInOrder(30);
         tree3.addInOrder(70);
         tree3.addInOrder(20);  // Sinistra di 30
@@ -113,21 +115,21 @@ public class Main {
         System.out.println("    20 40 60 80");
 
         boolean test3Passed =
-                tree3.root.getSx() != null && tree3.root.getSx().getSx() != null && tree3.root.getSx().getSx().get() == 20 &&
-                        tree3.root.getSx() != null && tree3.root.getSx().getDx() != null && tree3.root.getSx().getDx().get() == 40 &&
-                        tree3.root.getDx() != null && tree3.root.getDx().getSx() != null && tree3.root.getDx().getSx().get() == 60 &&
-                        tree3.root.getDx() != null && tree3.root.getDx().getDx() != null && tree3.root.getDx().getDx().get() == 80;
+                tree3.getRoot().getSx() != null && tree3.getRoot().getSx().getSx() != null && tree3.getRoot().getSx().getSx().get() == 20 &&
+                tree3.getRoot().getSx() != null && tree3.getRoot().getSx().getDx() != null && tree3.getRoot().getSx().getDx().get() == 40 &&
+                tree3.getRoot().getDx() != null && tree3.getRoot().getDx().getSx() != null && tree3.getRoot().getDx().getSx().get() == 60 &&
+                tree3.getRoot().getDx() != null && tree3.getRoot().getDx().getDx() != null && tree3.getRoot().getDx().getDx().get() == 80;
 
         if (!test3Passed) {
             StringBuilder debug = new StringBuilder();
             debug.append("\n  Struttura attuale:\n");
-            debug.append("  Root: ").append(tree3.root.get()).append("\n");
-            debug.append("  30->sx: ").append(tree3.root.getSx() != null && tree3.root.getSx().getSx() != null ? tree3.root.getSx().getSx().get() : "null").append(" (atteso: 20)\n");
-            debug.append("  30->dx: ").append(tree3.root.getSx() != null && tree3.root.getSx().getDx() != null ? tree3.root.getSx().getDx().get() : "null").append(" (atteso: 40)\n");
-            debug.append("  70->sx: ").append(tree3.root.getDx() != null && tree3.root.getDx().getSx() != null ? tree3.root.getDx().getSx().get() : "null").append(" (atteso: 60)\n");
-            debug.append("  70->dx: ").append(tree3.root.getDx() != null && tree3.root.getDx().getDx() != null ? tree3.root.getDx().getDx().get() : "null").append(" (atteso: 80)\n");
+            debug.append("  Root: ").append(tree3.getRoot().get()).append("\n");
+            debug.append("  30->sx: ").append(tree3.getRoot().getSx() != null && tree3.getRoot().getSx().getSx() != null ? tree3.getRoot().getSx().getSx().get() : "null").append(" (atteso: 20)\n");
+            debug.append("  30->dx: ").append(tree3.getRoot().getSx() != null && tree3.getRoot().getSx().getDx() != null ? tree3.getRoot().getSx().getDx().get() : "null").append(" (atteso: 40)\n");
+            debug.append("  70->sx: ").append(tree3.getRoot().getDx() != null && tree3.getRoot().getDx().getSx() != null ? tree3.getRoot().getDx().getSx().get() : "null").append(" (atteso: 60)\n");
+            debug.append("  70->dx: ").append(tree3.getRoot().getDx() != null && tree3.getRoot().getDx().getDx() != null ? tree3.getRoot().getDx().getDx().get() : "null").append(" (atteso: 80)\n");
             debug.append("  Struttura completa:\n");
-            debug.append(getTreeStructure(tree3.root, "  ", true));
+            debug.append(getTreeStructure(tree3.getRoot(), "  ", true));
             printTestResult(false, "Tutti i nodi inseriti correttamente", debug.toString());
         } else {
             printTestResult(true, "Tutti i nodi inseriti correttamente", null);
@@ -139,14 +141,14 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 4: Gestione valori duplicati (>= va a destra)" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<Integer> tree4 = new BinaryTree<>();
-        tree4.root = new NodoImpl<>(50);
+        BinarySearchTree<Integer> tree4 = new BinarySearchTree<>();
+        tree4.add(null, 50, true);
         tree4.addInOrder(50);  // Duplicato, dovrebbe andare a destra
 
-        boolean test4Passed = tree4.root.getDx() != null && tree4.root.getDx().get() == 50;
+        boolean test4Passed = tree4.getRoot().getDx() != null && tree4.getRoot().getDx().get() == 50;
         if (!test4Passed) {
-            String debug = "\n  Figlio destro: " + (tree4.root.getDx() == null ? "null" : tree4.root.getDx().get()) + " (atteso: 50)\n" +
-                    "  Figlio sinistro: " + (tree4.root.getSx() == null ? "null" : tree4.root.getSx().get()) + " (atteso: null)";
+            String debug = "\n  Figlio destro: " + (tree4.getRoot().getDx() == null ? "null" : tree4.getRoot().getDx().get()) + " (atteso: 50)\n" +
+                    "  Figlio sinistro: " + (tree4.getRoot().getSx() == null ? "null" : tree4.getRoot().getSx().get()) + " (atteso: null)";
             printTestResult(false, "Valore duplicato inserito a destra", debug);
         } else {
             printTestResult(true, "Valore duplicato inserito a destra", null);
@@ -158,22 +160,22 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 5: Inserimento sequenziale crescente" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<Integer> tree5 = new BinaryTree<>();
-        tree5.root = new NodoImpl<>(10);
+        BinarySearchTree<Integer> tree5 = new BinarySearchTree<>();
+        tree5.add(null, 50, true);
         tree5.addInOrder(20);
         tree5.addInOrder(30);
         tree5.addInOrder(40);
 
         boolean test5Passed =
-                tree5.root.getDx() != null && tree5.root.getDx().get() == 20 &&
-                        tree5.root.getDx().getDx() != null && tree5.root.getDx().getDx().get() == 30 &&
-                        tree5.root.getDx().getDx().getDx() != null && tree5.root.getDx().getDx().getDx().get() == 40;
+                tree5.getRoot().getDx() != null                  && tree5.getRoot().getDx().get() == 20 &&
+                tree5.getRoot().getDx().getDx() != null          && tree5.getRoot().getDx().getDx().get() == 30 &&
+                tree5.getRoot().getDx().getDx().getDx() != null  && tree5.getRoot().getDx().getDx().getDx().get() == 40;
 
         if (!test5Passed) {
             StringBuilder debug = new StringBuilder();
             debug.append("\n  Percorso atteso: 10->dx(20)->dx(30)->dx(40)\n");
             debug.append("  Percorso attuale: 10");
-            NodoImpl<Integer> current = tree5.root.getDx();
+            Node<Integer> current = tree5.getRoot().getDx();
             int depth = 0;
             while (current != null && depth < 4) {
                 debug.append("->dx(").append(current.get()).append(")");
@@ -181,7 +183,7 @@ public class Main {
                 depth++;
             }
             debug.append("\n  Struttura completa:\n");
-            debug.append(getTreeStructure(tree5.root, "  ", true));
+            debug.append(getTreeStructure(tree5.getRoot(), "  ", true));
             printTestResult(false, "Albero sbilanciato a destra creato correttamente", debug.toString());
         } else {
             printTestResult(true, "Albero sbilanciato a destra creato correttamente", null);
@@ -193,22 +195,22 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 6: Inserimento sequenziale decrescente" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<Integer> tree6 = new BinaryTree<>();
-        tree6.root = new NodoImpl<>(40);
+        BinarySearchTree<Integer> tree6 = new BinarySearchTree<>();
+        tree6.add(null, 40, true);
         tree6.addInOrder(30);
         tree6.addInOrder(20);
         tree6.addInOrder(10);
 
         boolean test6Passed =
-                tree6.root.getSx() != null && tree6.root.getSx().get() == 30 &&
-                        tree6.root.getSx().getSx() != null && tree6.root.getSx().getSx().get() == 20 &&
-                        tree6.root.getSx().getSx().getSx() != null && tree6.root.getSx().getSx().getSx().get() == 10;
+                tree6.getRoot().getSx() != null && tree6.getRoot().getSx().get() == 30 &&
+                tree6.getRoot().getSx().getSx() != null && tree6.getRoot().getSx().getSx().get() == 20 &&
+                tree6.getRoot().getSx().getSx().getSx() != null && tree6.getRoot().getSx().getSx().getSx().get() == 10;
 
         if (!test6Passed) {
             StringBuilder debug = new StringBuilder();
             debug.append("\n  Percorso atteso: 40->sx(30)->sx(20)->sx(10)\n");
             debug.append("  Percorso attuale: 40");
-            NodoImpl<Integer> current = tree6.root.getSx();
+            Node<Integer> current = tree6.getRoot().getSx();
             int depth = 0;
             while (current != null && depth < 4) {
                 debug.append("->sx(").append(current.get()).append(")");
@@ -216,7 +218,7 @@ public class Main {
                 depth++;
             }
             debug.append("\n  Struttura completa:\n");
-            debug.append(getTreeStructure(tree6.root, "  ", true));
+            debug.append(getTreeStructure(tree6.getRoot(), "  ", true));
             printTestResult(false, "Albero sbilanciato a sinistra creato correttamente", debug.toString());
         } else {
             printTestResult(true, "Albero sbilanciato a sinistra creato correttamente", null);
@@ -229,8 +231,8 @@ public class Main {
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
         System.out.println(ANSI_YELLOW + "Albero di test: 50, 30, 70, 20, 40" + ANSI_RESET);
-        BinaryTree<Integer> tree7 = new BinaryTree<>();
-        tree7.root = new NodoImpl<>(50);
+        BinarySearchTree<Integer> tree7 = new BinarySearchTree<>();
+        tree7.add(null, 50, true);
         tree7.addInOrder(30);
         tree7.addInOrder(70);
         tree7.addInOrder(20);
@@ -253,26 +255,26 @@ public class Main {
         System.out.println(ANSI_BOLD + "Test 8: Test con tipo String" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + ANSI_RESET);
         totalTests++;
-        BinaryTree<String> tree8 = new BinaryTree<>();
-        tree8.root = new NodoImpl<>("dog");
+        BinarySearchTree<String> tree8 = new BinarySearchTree<>();
+        tree8.add(null, "dog", true);
         tree8.addInOrder("cat");
         tree8.addInOrder("elephant");
         tree8.addInOrder("ant");
 
         boolean test8Passed =
-                tree8.root.getSx() != null && tree8.root.getSx().get().equals("cat") &&
-                        tree8.root.getDx() != null && tree8.root.getDx().get().equals("elephant") &&
-                        tree8.root.getSx().getSx() != null && tree8.root.getSx().getSx().get().equals("ant");
+                tree8.getRoot().getSx() != null && tree8.getRoot().getSx().get().equals("cat") &&
+                tree8.getRoot().getDx() != null && tree8.getRoot().getDx().get().equals("elephant") &&
+                tree8.getRoot().getSx().getSx() != null && tree8.getRoot().getSx().getSx().get().equals("ant");
 
         if (!test8Passed) {
             StringBuilder debug = new StringBuilder();
             debug.append("\n  Struttura attuale:\n");
-            debug.append("  Root: ").append(tree8.root.get()).append("\n");
-            debug.append("  Figlio sx: ").append(tree8.root.getSx() == null ? "null" : tree8.root.getSx().get()).append(" (atteso: cat)\n");
-            debug.append("  Figlio dx: ").append(tree8.root.getDx() == null ? "null" : tree8.root.getDx().get()).append(" (atteso: elephant)\n");
-            debug.append("  cat->sx: ").append(tree8.root.getSx() != null && tree8.root.getSx().getSx() != null ? tree8.root.getSx().getSx().get() : "null").append(" (atteso: ant)\n");
+            debug.append("  Root: ").append(tree8.getRoot().get()).append("\n");
+            debug.append("  Figlio sx: ").append(tree8.getRoot().getSx() == null ? "null" : tree8.getRoot().getSx().get()).append(" (atteso: cat)\n");
+            debug.append("  Figlio dx: ").append(tree8.getRoot().getDx() == null ? "null" : tree8.getRoot().getDx().get()).append(" (atteso: elephant)\n");
+            debug.append("  cat->sx: ").append(tree8.getRoot().getSx() != null && tree8.getRoot().getSx().getSx() != null ? tree8.getRoot().getSx().getSx().get() : "null").append(" (atteso: ant)\n");
             debug.append("  Struttura completa:\n");
-            debug.append(getTreeStructureString(tree8.root, "  ", true));
+            debug.append(getTreeStructureString(tree8.getRoot(), "  ", true));
             printTestResult(false, "Albero di stringhe ordinato correttamente", debug.toString());
         } else {
             printTestResult(true, "Albero di stringhe ordinato correttamente", null);
@@ -294,7 +296,7 @@ public class Main {
         }
     }
 
-    private static String getTreeStructure(NodoImpl<Integer> node, String prefix, boolean isTail) {
+    private static String getTreeStructure(Node<Integer> node, String prefix, boolean isTail) {
         if (node == null) return "";
 
         StringBuilder sb = new StringBuilder();
@@ -315,7 +317,7 @@ public class Main {
         return sb.toString();
     }
 
-    private static String getTreeStructureString(NodoImpl<String> node, String prefix, boolean isTail) {
+    private static String getTreeStructureString(Node<String> node, String prefix, boolean isTail) {
         if (node == null) return "";
 
         StringBuilder sb = new StringBuilder();
@@ -384,7 +386,7 @@ public class Main {
     }
 
     private static void interactiveMenu(Scanner scanner) {
-        BinaryTree<Integer> userTree = new BinaryTree<>();
+        BinarySearchTree<Integer> userTree = new BinarySearchTree<>();
         boolean hasRoot = false;
 
         while (true) {
@@ -408,8 +410,8 @@ public class Main {
                 case 1:
                     System.out.print("Inserisci valore root: ");
                     int rootVal = scanner.nextInt();
-                    userTree = new BinaryTree<>();
-                    userTree.root = new NodoImpl<>(rootVal);
+                    userTree = new BinarySearchTree<>();
+                    userTree.addInOrder(rootVal);
                     hasRoot = true;
                     System.out.println(ANSI_GREEN + "✓ Root inserita: " + rootVal + ANSI_RESET);
                     break;
@@ -462,8 +464,8 @@ public class Main {
 
                 case 7:
                     System.out.println(ANSI_YELLOW + "Creazione albero di esempio: 50, 30, 70, 20, 40, 60, 80" + ANSI_RESET);
-                    userTree = new BinaryTree<>();
-                    userTree.root = new NodoImpl<>(50);
+                    userTree = new BinarySearchTree<>();
+                    userTree.addInOrder(50);
                     userTree.addInOrder(30);
                     userTree.addInOrder(70);
                     userTree.addInOrder(20);
@@ -477,7 +479,7 @@ public class Main {
 
                 case 8:
                     userTree = generateRandomTree(scanner);
-                    hasRoot = userTree.root != null;
+                    hasRoot = userTree.getRoot() != null;
                     if (hasRoot) {
                         System.out.println(ANSI_GREEN + "✓ Albero casuale generato!" + ANSI_RESET);
                         System.out.println(userTree);
@@ -494,7 +496,7 @@ public class Main {
         }
     }
 
-    private static void printTree(NodoImpl<Integer> node, String prefix, boolean isTail) {
+    private static void printTree(Node<Integer> node, String prefix, boolean isTail) {
         if (node == null) return;
 
         System.out.println(prefix + (isTail ? "└── " : "├── ") + ANSI_BOLD + node.get() + ANSI_RESET);
@@ -509,7 +511,7 @@ public class Main {
         }
     }
 
-    private static BinaryTree<Integer> generateRandomTree(Scanner scanner) {
+    private static BinarySearchTree<Integer> generateRandomTree(Scanner scanner) {
         System.out.println("\n" + ANSI_CYAN + "╔════════════════════════════════════════╗" + ANSI_RESET);
         System.out.println(ANSI_CYAN + "║      GENERATORE ALBERO CASUALE         ║" + ANSI_RESET);
         System.out.println(ANSI_CYAN + "╚════════════════════════════════════════╝" + ANSI_RESET);
@@ -538,7 +540,7 @@ public class Main {
         String allowDuplicates = scanner.nextLine().toLowerCase();
         boolean duplicatesAllowed = allowDuplicates.equals("s") || allowDuplicates.equals("si");
 
-        BinaryTree<Integer> tree = new BinaryTree<>();
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         Random random = new Random();
         Set<Integer> usedValues = new HashSet<>();
 
@@ -554,7 +556,7 @@ public class Main {
 
             if (duplicatesAllowed || !usedValues.contains(value)) {
                 if (insertedCount == 0) {
-                    tree.root = new NodoImpl<>(value);
+                    tree.addInOrder(value);
                 } else {
                     tree.addInOrder(value);
                 }

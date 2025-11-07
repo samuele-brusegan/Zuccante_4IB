@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a117fa2c-839c-4b32-b75d-4d4d8fca5a04" name="Changes" comment="Remove Jackson library configuration file&#10;&#10;Deleted the configuration file for the Jackson library, likely as part of a cleanup or dependency management update. This change ensures the project no longer references or includes unnecessary library files.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure_BinaryTreeOrdered.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BinaryTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RubricaConNodi/src/utilities" beforeDir="false" afterPath="$PROJECT_DIR$/../RubricaConNodi/src/utilities" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RubricaConNodi/src/utilities/Graphics.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Dockerfile" />
+        <option value="AnnotationType" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="34jdQbcdqMXwhwO7ULNkSecZ8Ob" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/samuele.brusegan/Documents/dev/Zuccante_4IB/DataStructure_BinaryTreeOrdered/src/Main.java&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="DataStructure_BinaryTreeOrdered" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a117fa2c-839c-4b32-b75d-4d4d8fca5a04" name="Changes" comment="" />
+      <created>1761730901451</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761730901451</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add initial implementation of binary tree and test suite&#10;&#10;Introduced a generic binary tree implementation (`BinaryTree`) with support for node addition and tree traversal (preorder, inorder, postorder). Added a comprehensive test suite and interactive menu for testing various tree functionalities.">
+      <option name="closed" value="true" />
+      <created>1761734947636</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761734947636</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Improve tree rendering and refactor formatting logic&#10;&#10;Enhanced the BinaryTree's `toString()` method for better visual representation, including dynamic width calculation and clearer structure rendering. Adjusted ANSI formatting in Main.java for consistent alignment. Also fixed a test case issue and streamlined null-check logic for cleaner code.">
+      <option name="closed" value="true" />
+      <created>1761907670811</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761907670811</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add utility methods and documentation to BinaryTree  &#10;&#10;This commit introduces multiple utility methods to the `BinaryTree` class, including node search, height calculation, leaf counting, and more. It also adds proper Javadoc-style documentation for better code clarity and maintainability. Additionally, minor improvements, such as removing unused imports and refining methods, were made for overall code optimization.">
+      <option name="closed" value="true" />
+      <created>1762337700408</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762337700408</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Remove Jackson library configuration file&#10;&#10;Deleted the configuration file for the Jackson library, likely as part of a cleanup or dependency management update. This change ensures the project no longer references or includes unnecessary library files.">
+      <option name="closed" value="true" />
+      <created>1762337728192</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762337728192</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add initial implementation of binary tree and test suite&#10;&#10;Introduced a generic binary tree implementation (`BinaryTree`) with support for node addition and tree traversal (preorder, inorder, postorder). Added a comprehensive test suite and interactive menu for testing various tree functionalities." />
+    <MESSAGE value="Improve tree rendering and refactor formatting logic&#10;&#10;Enhanced the BinaryTree's `toString()` method for better visual representation, including dynamic width calculation and clearer structure rendering. Adjusted ANSI formatting in Main.java for consistent alignment. Also fixed a test case issue and streamlined null-check logic for cleaner code." />
+    <MESSAGE value="Add utility methods to BinaryTree for traversal and analysis&#10;&#10;Introduced methods to calculate height, node count, sum of node values, and leaf count. Added search functionalities for nodes and their levels, improving binary tree operations and traversal capabilities." />
+    <MESSAGE value="Add utility methods for traversal, search, and analysis in BinaryTree&#10;&#10;Introduced various methods to enhance BinaryTree functionality, including searching, height calculation, node counting, leaf counting, node sum calculation, and level determination. Improved documentation with detailed comments for better code understanding. Simplified `addInOrder` method signature and removed an unused import." />
+    <MESSAGE value="Add utility methods and documentation to BinaryTree  &#10;&#10;This commit introduces multiple utility methods to the `BinaryTree` class, including node search, height calculation, leaf counting, and more. It also adds proper Javadoc-style documentation for better code clarity and maintainability. Additionally, minor improvements, such as removing unused imports and refining methods, were made for overall code optimization." />
+    <MESSAGE value="Remove Jackson library configuration file&#10;&#10;Deleted the configuration file for the Jackson library, likely as part of a cleanup or dependency management update. This change ensures the project no longer references or includes unnecessary library files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove Jackson library configuration file&#10;&#10;Deleted the configuration file for the Jackson library, likely as part of a cleanup or dependency management update. This change ensures the project no longer references or includes unnecessary library files." />
+  </component>
+</project>
