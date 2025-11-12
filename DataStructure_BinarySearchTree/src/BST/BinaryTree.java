@@ -35,6 +35,16 @@ public class BinaryTree<T> {
 
         return findRefToNode(searchTreeRoot.getSx(), val);
     }
+    /**
+     * Searches for a reference to the parent node of a node containing the specified value
+     * in the binary tree. The search starts from the given subtree root and traverses recursively.
+     *
+     * @param searchTreeRoot the root of the subtree where the search begins; can be null
+     * @param val the value of the child node for which the parent reference is to be found
+     * @return a reference to the parent node of the node containing the specified value, including
+     *         information about whether the node is on the left or right of the parent;
+     *         null if no such parent or child is found
+     */
     protected ChildNodeRef<T> findRefToFatherNode(Node<T> searchTreeRoot, T val){
         if(searchTreeRoot == null) return null;
         if (searchTreeRoot.getDx().get().equals(val)) return new ChildNodeRef<>(searchTreeRoot, false);
