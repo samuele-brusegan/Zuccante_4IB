@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
  
@@ -22,15 +23,15 @@ public class Main {
 
 		
 		// Creazione albero en-it
-        System.out.println("\n\n========== EN -> IT ==========\n");
+//        System.out.println("\n\n========== EN -> IT ==========\n");
 
 		BinarySearchTree<TermineEnOrdered> bst = list2TreeEn(list);
 //        bst.viewInOrder();
-        System.out.println( "Ricerca con albero Ordinato:" + findInBstEn(bst, "home") );
-        System.out.println( "Ricerca con albero NON Ordinato:" + reverseInefficientFindInBst(bst, "assoluto") );
-
-
-        System.out.println("\n\n========== IT -> EN ==========\n");
+//        System.out.println( "Ricerca con albero Ordinato:" + findInBstEn(bst, "home") );
+//        System.out.println( "Ricerca con albero NON Ordinato:" + reverseInefficientFindInBst(bst, "assoluto") );
+//
+//
+//        System.out.println("\n\n========== IT -> EN ==========\n");
 
         // OPZ: Ordinare array it-en
 		//   +: Creazione Albero it-en
@@ -41,9 +42,46 @@ public class Main {
         
         BinarySearchTree<TermineItOrdered> bstIt = list2TreeIt(listIt);
 
-        System.out.println( "Ricerca con albero Ordinato:" + findInBstIt(bstIt, "casa"));
+//        System.out.println( "Ricerca con albero Ordinato:" + findInBstIt(bstIt, "casa"));
         
 		// Creare la UI
+
+        while (true) {
+            menu();
+            Scanner sc = new Scanner(System.in);
+            int op = sc.nextInt();
+            sc.nextLine();
+
+            switch (op) {
+                case 0 -> {
+                    System.out.println("Arrivederci!0");
+                    return;
+                }
+                case 1 -> {
+                    System.out.println("\n\n========== EN -> IT ==========\n");
+
+                    String word = sc.nextLine();
+                    TermineEnOrdered t = findInBstEn(bst, word);
+                    if (t == null) System.out.println("Non trovato");
+                    else System.out.println(t);
+
+                }
+                case 2 -> {
+                    System.out.println("\n\n========== IT -> EN ==========\n");
+
+                    String word = sc.nextLine();
+                    TermineItOrdered t = findInBstIt(bstIt, word);
+                    if (t == null) System.out.println("Non trovato");
+                    else System.out.println(t);
+
+                }
+                default -> {
+                    System.out.println("Opzione non valida");
+                }
+
+            }
+        }
+
 
     }
 	
@@ -171,5 +209,16 @@ public class Main {
         } else {
             return findInBstRecursiveIt(subTreeRoot.getDx(), italianNeedle);
         }
+    }
+
+    public static void menu() {
+        System.out.println("+------------------------+");
+        System.out.println("|          Menu          |");
+        System.out.println("+------------------------+");
+        System.out.println("| 1. ENG -> ITA          |");
+        System.out.println("| 2. ITA -> ENG          |");
+        System.out.println("|                        |");
+        System.out.println("| 0. Esci                |");
+        System.out.println("+------------------------+");
     }
 }
