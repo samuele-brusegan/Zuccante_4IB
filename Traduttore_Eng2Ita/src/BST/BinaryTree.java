@@ -2,11 +2,11 @@ package BST;
 
 import java.util.ArrayList;
 import java.util.List;
-import BST.ChildNodeRef;
 
+@SuppressWarnings("unused")
 public class BinaryTree<T> {
 
-    private Node<T> root;
+    protected Node<T> root;
 
     public void add(T father, T child, boolean isLeft) {
         if (root == null) { root = new Node<>(child); return; }
@@ -71,29 +71,46 @@ public class BinaryTree<T> {
 
     }
     public void viewPostOrder() {
+        if (root == null) {
+            System.err.println("L'albero è vuoto");
+            return;
+        }
         viewPostOrder(root);
     }
 
     //Recursive Visits
     private void viewPreOrder(Node<T> subTreeRoot) {
-        System.out.print("|"+subTreeRoot+"|");
+        System.out.print("("+subTreeRoot+")");
         if(subTreeRoot.getSx() != null) viewPreOrder(subTreeRoot.getSx());
         if(subTreeRoot.getDx() != null) viewPreOrder(subTreeRoot.getDx());
     }
     private void viewInOrder(Node<T> subTreeRoot) {
-        if(subTreeRoot.getSx() != null) viewPreOrder(subTreeRoot.getSx());
-        System.out.print("|"+subTreeRoot+"|");
-        if(subTreeRoot.getDx() != null) viewPreOrder(subTreeRoot.getDx());
+        if(subTreeRoot.getSx() != null) viewInOrder(subTreeRoot.getSx());
+        System.out.print("("+subTreeRoot+")");
+        if(subTreeRoot.getDx() != null) viewInOrder(subTreeRoot.getDx());
     }
     private void viewPostOrder(Node<T> subTreeRoot) {
-        if(subTreeRoot.getSx() != null) viewPreOrder(subTreeRoot.getSx());
-        if(subTreeRoot.getDx() != null) viewPreOrder(subTreeRoot.getDx());
-        System.out.print("|"+subTreeRoot+"|");
+        if(subTreeRoot.getSx() != null) viewPostOrder(subTreeRoot.getSx());
+        if(subTreeRoot.getDx() != null) viewPostOrder(subTreeRoot.getDx());
+        System.out.print("("+subTreeRoot+")");
+    }
+
+    private String viewInOrderStr(Node<T> subTreeRoot) {
+        if (subTreeRoot == null) return "()";
+        String out = "(";
+        if(subTreeRoot.getSx() != null) out += viewInOrderStr(subTreeRoot.getSx());
+        out += subTreeRoot;
+        if(subTreeRoot.getDx() != null) out += viewInOrderStr(subTreeRoot.getDx());
+        return out+")";
     }
 
     //To string
     @Override
     public String toString() {
+        return viewInOrderStr(root);
+    }
+
+    public String coolToString() {
         if (root == null) return "Albero vuoto";
 
         StringBuilder sb = new StringBuilder();

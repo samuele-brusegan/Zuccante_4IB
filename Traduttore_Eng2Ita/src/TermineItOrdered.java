@@ -1,14 +1,14 @@
-public class Termine implements Comparable<Termine> {
+public class TermineItOrdered implements Comparable<TermineItOrdered> {
 	private String italian;
 	private String english;
-	
+
 	/**
 	 * Constructs a new Termine object with the specified Italian and English words.
 	 *
 	 * @param italian the word in Italian
 	 * @param english the corresponding word in English
 	 */
-	public Termine(String italian, String english) {
+	public TermineItOrdered(String italian, String english) {
 		this.italian = italian;
 		this.english = english;
 	}
@@ -22,11 +22,16 @@ public class Termine implements Comparable<Termine> {
 	}
 	
 	@Override
-	public int compareTo(Termine o) {
-		return this.english.compareTo(o.english);
+	public int compareTo(TermineItOrdered o) {
+		return this.italian.compareTo(o.italian);
 	}
 	@Override
 	public String toString() {
-		return "Termine [italian=" + italian + ", english=" + english + "]";
+//		return "Termine [italian=" + italian + ", english=" + english + "]";
+        return "[it=" + italian + ", en=" + english + "]";
 	}
+
+    public TermineEnOrdered reverse() {
+        return new TermineEnOrdered(italian, english);
+    }
 }

@@ -2,29 +2,24 @@ package BST;
 
 @SuppressWarnings("unused")
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
-    Node<T> root;
+//    Node<T> super.root;
     int height;
 
     public BinarySearchTree() {}
 
     public Node<T> getRoot() {
-        return root;
+        return super.root;
     }
 
     public  void    addInOrder(T val){
-	    System.out.println("Adding new value (" + val + ") in the tree at " + (getClass().getName() + "@" + Integer.toHexString(hashCode())));
-        if (root == null) {
-			root = new Node<>(val);
-	        System.out.println(root.encode());
+//	    System.out.println("Adding new value (" + val + ") in the tree at " + (getClass().getName() + "@" + Integer.toHexString(hashCode())));
+        if (super.root == null) {
+			super.root = new Node<>(val);
+//            System.out.println("Aggiungo come Radice: " + super.root.encode());
 			return;
 		}
   
-		addInOrder(root, val);
-		/*if (addInOrder(root, val)) {
-			System.out.println(root.encode());
-		} else {
-			System.err.println("Something went wrong :(");
-		}*/
+		addInOrder(super.root, val);
     }
     private boolean addInOrder(Node<T> subRootTree, T val){
 
@@ -51,15 +46,15 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     /**
      * Searches for the specified value in the binary tree.
-     * The search starts from the root of the tree and traverses recursively through its nodes.
+     * The search starts from the super.root of the tree and traverses recursively through its nodes.
      *
      * @param val the value to be searched for in the binary tree
      * @return true if the value is found in the binary tree, false otherwise
      */
     //Altro
     public boolean find(int val) {
-        if (root == null) return false;
-        return find(root, val);
+        if (super.root == null) return false;
+        return find(super.root, val);
     }
     private boolean find(Node<T> subTreeRoot, int val) {
         if (subTreeRoot.get().equals(val)) return true;
@@ -68,10 +63,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 
     /**
-     * Finds the node containing the minimum value in the binary tree starting from the given subtree root.
+     * Finds the node containing the minimum value in the binary tree starting from the given subtree super.root.
      * The minimum value is located at the leftmost node of the subtree.
      *
-     * @param subTreeRoot the root of the subtree being searched for the minimum value.
+     * @param subTreeRoot the super.root of the subtree being searched for the minimum value.
      *                    If null, it indicates an empty subtree.
      * @return the reference to the node containing the minimum value in the subtree.
      *         Returns null if the input subtree is empty.
@@ -89,8 +84,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
      * @return the count of leaf nodes in the binary tree. If the tree is empty, it returns 0.
      */
     public int leafCounter(){
-        if (root == null) return 0;
-        return leafCounter(root);
+        if (super.root == null) return 0;
+        return leafCounter(super.root);
     }
     private int leafCounter(Node<T> subTreeRoot) {
         int counter = 0;
@@ -104,14 +99,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     /**
      * Searches for a node with the specified value in the binary tree.
-     * The search starts from the root of the tree and traverses recursively.
+     * The search starts from the super.root of the tree and traverses recursively.
      *
      * @param val the value of the node to be searched for in the binary tree
      * @return the node containing the specified value if found; null otherwise
      */
     public Node<T> findNode(int val) {
-        if (root == null) return null;
-        return findNode(root, val);
+        if (super.root == null) return null;
+        return findNode(super.root, val);
     }
     private Node<T> findNode(Node<T> subTreeRoot, int val) {
         if (subTreeRoot.get().equals(val)) return subTreeRoot;
@@ -127,13 +122,13 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     /**
      * Computes the height of the binary tree. The height of a binary tree is defined as
-     * the number of edges on the longest path from the root to a leaf node.
+     * the number of edges on the longest path from the super.root to a leaf node.
      *
-     * @return the height of the binary tree. If the root is null (empty tree), it returns 0.
+     * @return the height of the binary tree. If the super.root is null (empty tree), it returns 0.
      */
     public  int findHeight(){
-        if (root == null) return 0;
-        return findHeight(root);
+        if (super.root == null) return 0;
+        return findHeight(super.root);
     }
     private int findHeight(Node<T> subTreeRoot) {
         if (subTreeRoot == null) return 0;
@@ -146,8 +141,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
      * @return the total count of nodes in the tree. If the tree is empty, it returns 0.
      */
     public  int howManyNodes(){
-        if (root == null) return 0;
-        return howManyNodes(root);
+        if (super.root == null) return 0;
+        return howManyNodes(super.root);
     }
     private int howManyNodes(Node<T> subTreeRoot) {
         if (subTreeRoot == null) return 0;
@@ -161,8 +156,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
      * @return the total sum of all node values in the tree. If the tree is empty, it returns 0.
      */
     public  int sumNodes(){
-        if (root == null) return 0;
-        return sumNodes(root);
+        if (super.root == null) return 0;
+        return sumNodes(super.root);
     }
     private int sumNodes(Node<T> subTreeRoot) {
         if(subTreeRoot == null) return 0;
@@ -172,15 +167,15 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     /**
      * Determines the level of a node containing the specified value in the binary tree.
-     * The level is defined as the distance (in edges) between the root and the node.
+     * The level is defined as the distance (in edges) between the super.root and the node.
      *
      * @param needleVal the value of the node whose level needs to be determined
      * @return the level of the node if it exists in the tree, or Integer.MAX_VALUE if the node
      *         is not found
      */
     public  int getLevel(T needleVal){
-        Node<T> needle = findRefToNode(root, needleVal);
-        return getLevel(root, needle);
+        Node<T> needle = findRefToNode(super.root, needleVal);
+        return getLevel(super.root, needle);
     }
     private int getLevel(Node<T> subTreeRoot, Node<T> needle) {
         if (subTreeRoot == null) return Integer.MAX_VALUE;
@@ -198,7 +193,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 
     public boolean remove(T valueToBeRemoved) {
-        ChildNodeRef<T> container = findRefToFatherNode(root, valueToBeRemoved);
+        ChildNodeRef<T> container = findRefToFatherNode(super.root, valueToBeRemoved);
         if (container == null) return false;
 
         //Trovo il padre e il nodo da rimuovere
@@ -235,7 +230,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             //CASO 3: nFigli == 2 (Ha due figli)
             case 2 -> {
                 //Trovo il minimo del ramo destro
-                Node<T> minNode = findRefToMin(root);
+                Node<T> minNode = findRefToMin(super.root);
                 //Sostituisco il minimo al nodo da rimuovere.
                   // Rimuovere il nodo minimo
 
