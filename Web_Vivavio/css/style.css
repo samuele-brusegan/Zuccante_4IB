@@ -1,0 +1,98 @@
+:root {
+    --header-bg:   #FEE4C3;
+    --main-bg:     #877575;
+    --primary-d:   #018d25;
+    --primary:     #62de5b;
+    --primary-l:   #89E2A0;
+    --accent:      #FFFF00;
+}
+
+body {
+    background: var(--main-bg);
+    /* font-family: "Times New Roman"; */
+}
+header {
+    background: var(--header-bg);
+    font-size: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    padding: 0 30px;
+    
+    & > img {
+        margin: 10px;
+        height: 60px;
+        aspect-ratio: 1;
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 30px;
+    background: white;
+
+    & > .btn {
+        width: 30%;
+
+        --bs-btn-color: #000;
+        --bs-btn-bg: var(--primary);
+        --bs-btn-border-color: #000;
+
+        --bs-btn-hover-color: #000;
+        --bs-btn-hover-bg: var(--primary-l);
+        --bs-btn-hover-border-color: var(--primary-d);
+
+        --bs-btn-focus-shadow-rgb: 211,212,213;
+
+        --bs-btn-active-color: #000;
+        --bs-btn-active-bg: var(--primary-l);
+        --bs-btn-active-border-color: var(--primary-d);
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+
+        --bs-btn-disabled-color: #000;
+        --bs-btn-disabled-bg: #f8f9fa;
+        --bs-btn-disabled-border-color: #f8f9fa;
+
+        border-radius: 1.25rem;
+    }
+}
+
+footer {
+    background: var(--primary-d);
+    color: var(--accent);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 22px;
+    padding: 10px 7px;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+
+    & > section {
+        padding: 15px;
+        width: 30%;
+        border: 1px solid black;
+        background: var(--primary-l);
+        text-align: center;
+        
+        & > img {
+            width: 90%;
+            margin: 20px 0;
+        }
+    }
+
+    & > section:not(.list) {
+        width: 30%;
+    }
+}
+
+section.list {
+    width: 47%;
+}

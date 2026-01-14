@@ -1,0 +1,200 @@
+{
+    "pianteDaInterno": [
+        {
+            "name": "Piante da foglia",
+            "list": [
+                {
+                    "name": "Calathea Orbifolia",
+                    "text": "La Calathea Orbifolia domina le altre Calathee per la larghezza delle foglie. Queste foglie verdi di grandi dimensioni sono decorate con graziosi tratti argentati. Come molte Calathee, anche l'Orbifolia è nota come pianta vivente: durante il giorno apre le foglie e la notte le richiude lentamente.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Monstera Deliciosa",
+                    "category": "Piante da Foglia",
+                    "text": "La Monstera Deliciosa è una delle piante da foglia più amate per le sue grandi foglie verdi, lucide e profondamente intagliate. Dona un tocco tropicale ed elegante agli ambienti interni.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Ficus Elastica",
+                    "category": "Piante da Foglia",
+                    "text": "Il Ficus Elastica, conosciuto come Fico della Gomma, si distingue per le sue foglie spesse e coriacee di colore verde intenso. È una pianta robusta e decorativa.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Alocasia Zebrina",
+                    "category": "Piante da Foglia",
+                    "text": "L’Alocasia Zebrina colpisce per le sue grandi foglie a forma di freccia e per i caratteristici fusti striati. È una pianta dal forte impatto visivo.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Calathea Makoyana",
+                    "category": "Piante da Foglia",
+                    "text": "La Calathea Makoyana è apprezzata per le sue foglie decorative con disegni verde scuro su fondo chiaro. Segue il ritmo giorno-notte muovendo le foglie.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Sansevieria Trifasciata",
+                    "category": "Piante da Foglia",
+                    "text": "La Sansevieria Trifasciata è una pianta resistente e versatile, caratterizzata da foglie erette e variegate. Ideale anche per chi ha poca esperienza.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                }
+            ]
+        },
+        {
+            "name": "Piante grasse e cactus",
+            "list": [
+                {
+                    "name": "Echinocactus Grusonii",
+                    "category": "Piante grasse e cactus",
+                    "text": "L’Echinocactus Grusonii, noto come Cuscino della suocera, è un cactus sferico ricoperto di spine dorate. Ideale per ambienti molto luminosi.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Aloe Vera",
+                    "category": "Piante grasse e cactus",
+                    "text": "L’Aloe Vera è una pianta grassa ornamentale e funzionale, con foglie carnose disposte a rosetta e facile manutenzione.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Opuntia Microdasys",
+                    "category": "Piante grasse e cactus",
+                    "text": "L’Opuntia Microdasys è riconoscibile per i suoi segmenti piatti ricoperti di piccoli glochidi. Molto decorativa.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Crassula Ovata",
+                    "category": "Piante grasse e cactus",
+                    "text": "La Crassula Ovata, detta Albero di Giada, è una pianta grassa resistente con foglie spesse e lucide, simbolo di prosperità.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Mammillaria Elongata",
+                    "category": "Piante grasse e cactus",
+                    "text": "La Mammillaria Elongata è un cactus compatto a fusti cilindrici, capace di produrre piccole fioriture primaverili.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                }
+            ]
+        }
+    ],
+    "alberiEArbusti": [
+        {
+            "name":"Aaa",
+            "list":[
+                {
+                    "name": "Ulivo",
+                    "category": "Alberi e arbusti",
+                    "text": "L’Ulivo è un albero sempreverde simbolo del Mediterraneo. Resistente e longeva, è apprezzata per il suo tronco decorativo e il fogliame argentato.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Acero Giapponese",
+                    "category": "Alberi e arbusti",
+                    "text": "L’Acero Giapponese è un arbusto ornamentale molto elegante, noto per le sue foglie finemente lobate e i colori autunnali intensi.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Alloro",
+                    "category": "Alberi e arbusti",
+                    "text": "L’Alloro è un arbusto sempreverde aromatico, ideale sia come pianta ornamentale sia per uso culinario.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Camelia",
+                    "category": "Alberi e arbusti",
+                    "text": "La Camelia è un arbusto elegante e fiorifero, caratterizzato da fiori grandi e decorativi che sbocciano tra inverno e primavera.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                }
+            ]
+        },
+        {
+            "name":"Bbb",
+            "list":[
+                {
+                    "name": "Ulivo",
+                    "category": "Alberi e arbusti",
+                    "text": "L’Ulivo è un albero sempreverde simbolo del Mediterraneo. Resistente e longeva, è apprezzata per il suo tronco decorativo e il fogliame argentato.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Acero Giapponese",
+                    "category": "Alberi e arbusti",
+                    "text": "L’Acero Giapponese è un arbusto ornamentale molto elegante, noto per le sue foglie finemente lobate e i colori autunnali intensi.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Alloro",
+                    "category": "Alberi e arbusti",
+                    "text": "L’Alloro è un arbusto sempreverde aromatico, ideale sia come pianta ornamentale sia per uso culinario.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Camelia",
+                    "category": "Alberi e arbusti",
+                    "text": "La Camelia è un arbusto elegante e fiorifero, caratterizzato da fiori grandi e decorativi che sbocciano tra inverno e primavera.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                }
+            ]
+        }
+    ],
+    "bonsai": [
+        {
+            "name":"Aaa",
+            "list":[
+                {
+                    "name": "Bonsai di Ficus",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Ficus è uno dei più diffusi, apprezzato per la facilità di coltivazione e il tronco sinuoso.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Bonsai di Olmo Cinese",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Olmo Cinese presenta foglie piccole e un portamento elegante. È molto resistente e adatto anche ai principianti.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Bonsai di Ginepro",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Ginepro è una conifera sempreverde molto scenografica, ideale per chi ama uno stile naturale e dinamico.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Bonsai di Acero",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Acero è apprezzato per le sue foglie decorative e i colori stagionali che vanno dal verde al rosso intenso.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                }
+            ]
+        },
+        {
+            "name":"Bbb",
+            "list":[
+                {
+                    "name": "Bonsai di Ficus",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Ficus è uno dei più diffusi, apprezzato per la facilità di coltivazione e il tronco sinuoso.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Bonsai di Olmo Cinese",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Olmo Cinese presenta foglie piccole e un portamento elegante. È molto resistente e adatto anche ai principianti.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Bonsai di Ginepro",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Ginepro è una conifera sempreverde molto scenografica, ideale per chi ama uno stile naturale e dinamico.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                },
+                {
+                    "name": "Bonsai di Acero",
+                    "category": "Bonsai",
+                    "text": "Il Bonsai di Acero è apprezzato per le sue foglie decorative e i colori stagionali che vanno dal verde al rosso intenso.",
+                    "imag": "https://brusegan.it/assets/placeholder.svg"
+                }
+            ]
+        }
+        
+    ]
+}
