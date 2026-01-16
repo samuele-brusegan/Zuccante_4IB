@@ -74,6 +74,7 @@ main {
     display: flex;
     justify-content: space-between;
     padding: 20px 30px;
+    margin-bottom: 50px;
 
     & > section {
         padding: 15px;
@@ -95,4 +96,17 @@ main {
 
 section.list {
     width: 47%;
+    & > div {
+        
+        & > img {
+            max-width: 30%;
+            margin-right: 10px;
+            height: 100%;
+        }
+
+    }
+}
+
+* {
+    /* border: 1px solid red; */
 }

@@ -17,7 +17,7 @@ if (isset($_GET) && isset($_GET['id'])){
     }
 }
 ?>
-
+<!DOCTYPE HTML>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -29,17 +29,21 @@ if (isset($_GET) && isset($_GET['id'])){
     <body>
         <header>
             <img src="img/logo.svg" alt="logo" />
-            Vivaio "La grande Quercia"
+            <div style="text-align: center;">
+                <h3>Vivaio</h3>
+                <h5>"La grande Quercia che si piega ma non si spezza"</h5>
+            </div>
             <img src="img/map.svg" alt="" />
         </header>
 
         <nav>
-            <button class="btn">Piante da interno</button>
-            <button class="btn">Alberi e arbusti</button>
-            <button class="btn">Bonsai</button>
+            <div></div>
+            <a class="btn" href="index.html">Homepage</a>
+            <div></div>
         </nav>
 
         <main id="container"></main>
+
         <script>
             function main() {
                 let rawData = `<?=$jsonData?>`;
@@ -60,10 +64,12 @@ if (isset($_GET) && isset($_GET['id'])){
                 data.forEach(sec => {
                     let secDom = document.createElement("section");
                     secDom.style.height = "70vh";
-                    secDom.style.overflow = "auto"
+                    secDom.style.overflow = "auto";
+                    secDom.style.width = (100/data.length-.1)+"%";
+                    secDom.style.margin = "10px";
                     secDom.classList.add('list');
 
-                    let h6 = document.createElement("h6");
+                    let h6 = document.createElement("h4");
                     h6.innerHTML = sec['name'];
                     secDom.appendChild(h6);
 
@@ -71,15 +77,17 @@ if (isset($_GET) && isset($_GET['id'])){
                     
                     list.forEach(plant => {
                         let div1 = document.createElement("div");
+                        div1
                         div1.innerHTML = `
-                        <img src="${plant.imag}" style="width: 40%">
+                        <!--src="${plant.imag}"-->
+                        <img src="https://picsum.photos/200" />
                         <div>
-                            <a>${plant.name}</a>
+                            <b>${plant.name}</b>
                             <p>${plant.text}</p>
                         </div>
                         `;
                         div1.style.display = 'flex';
-                        div1.style.margin = '10px';
+                        div1.style.margin = '20px 10px';
                         div1.style.textAlign = 'left';
                         secDom.appendChild(div1);
                     });
