@@ -31,4 +31,4 @@ Implementazione di una rubrica telefonica utilizzando strutture dati basate su n
 ---
 
 **Autore**: Brusegan Samuele\
-**Anno Accademico**: 2024/2025
+**Anno Accademico**: 2025/2026
