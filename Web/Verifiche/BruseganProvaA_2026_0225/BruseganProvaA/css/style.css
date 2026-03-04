@@ -1,0 +1,120 @@
+:root {
+    --primary: #00F;
+    --secondary: #00ffdd;
+    --accent: #FF0;
+    --text: #000;
+    --bg1: #FFF; /* Body bg*/
+    --bg2: #AAA; /* Section bg */
+    --bg3: #999;
+    --bg3-hov: #c5c5c5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main.container {
+    background: var(--bg1);
+    color: var(--text);
+    
+    /* Struttura */
+    display: flex;
+    justify-content: space-between;
+}
+
+section {
+    background: var(--bg2);
+    width: 30vw;
+    height: 90vh;
+    padding: 10px;
+
+    /* Struttura */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    margin-bottom: 15px;
+    border-radius: 2rem;
+}
+
+.card {
+    width: 90%;
+    margin-bottom: 10px;
+    background: var(--bg3);
+    border-radius: 1rem;
+    padding: .7rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.315);
+}
+.card.hover:hover {
+    background: var(--bg3-hov);
+}
+
+
+.card.prodotto {
+    display: flex;
+    flex-direction: row;
+    
+
+    & > img {
+        width: 33%;
+        height: auto;
+        margin-right: 7px;
+        border-radius: 1rem;
+    }
+
+    & > div > h4 {
+        margin-top: 0;
+    }
+    & > div > * {
+        text-transform: capitalize;
+    }
+}
+
+
+/* Remove */
+.removable {
+    position: relative;
+}
+.removable>button.remove{
+    background: #ff2222; 
+    border-radius: 50%; 
+    aspect-ratio: 1; 
+    width: 1.5rem; 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    margin: 10px;
+    border: 1px solid #740000;
+}
+.removable>button.remove:hover{
+    background: #f17373; 
+    border: 1px solid #b43535;
+}
+
+
+/* Totale */
+#calcolaPrezzo {
+    background: var(--bg3);
+    width: 50%;
+    font-size: 1.5rem;
+    padding: .7rem;
+    border-radius: 1rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#calcolaPrezzo:hover {
+    background: var(--bg3-hov);
+}
+
+#prezzoCalcolato {
+    font-size: 1.5rem;
+}
