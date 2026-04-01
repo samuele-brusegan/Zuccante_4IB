@@ -1,34 +1,81 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const loader = document.getElementById("loader");
     const questionsContainer = document.getElementById("questions-container");
+    const form = document.getElementById("quiz-config-form");
 
-    // Mostra loader
-    loader.style.display = "block";
+    // Carica le categorie disponibili
+    await loadCategories();
+
+    // Gestisci il submit del form
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Mostra loader
+        loader.style.display = "block";
+        questionsContainer.innerHTML = "";
+
+        try {
+            // Recupera i parametri dal form
+            const category = document.getElementById("category-select").value;
+            const difficulty = document.getElementById("difficulty-select").value;
+            const type = document.getElementById("type-select").value;
+            const amount = parseInt(document.getElementById("amount-input").value);
+
+            // Chiama API con i parametri selezionati
+            const domande = await getQuestionsWithRetry(amount, difficulty, type, category, 5);
+            hideLoader(loader);
+
+            if (!domande || !domande.results || domande.results.length === 0) {
+                showError(questionsContainer, "Nessuna domanda disponibile con i criteri selezionati. Prova a modificare i filtri.");
+                return;
+            }
+
+            displayQuestions(domande.results, questionsContainer);
+        } catch (error) {
+            hideLoader(loader);
+            console.error("Errore nel caricamento delle domande:", error);
+            showError(questionsContainer, "Errore nel caricamento delle domande. Riprova tra qualche secondo.");
+        }
+    });
+});
+
+/**
+ * Carica le categorie disponibili dall'API
+ */
+async function loadCategories() {
+    const categorySelect = document.getElementById("category-select");
 
     try {
-        // Chiama API con retry logic
-        const domande = await getQuestionsWithRetry(10, 5); // max 5 tentativi
-        hideLoader(loader);
-
-        if (!domande || !domande.results || domande.results.length === 0) {
-            showError(questionsContainer, "Nessuna domanda disponibile al momento. Riprova più tardi.");
-            return;
+        const response = await fetch("https://opentdb.com/api_category.php");
+        if (response.status === 200) {
+            const data = await response.json();
+            if (data && data.trivia_categories) {
+                data.trivia_categories.forEach(category => {
+                    const option = document.createElement("option");
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    categorySelect.appendChild(option);
+                });
+            }
         }
-
-        displayQuestions(domande.results, questionsContainer);
     } catch (error) {
-        hideLoader(loader);
-        console.error("Errore nel caricamento delle domande:", error);
-        showError(questionsContainer, "Errore nel caricamento delle domande. Riprova tra qualche secondo.");
+        console.warn("Impossibile caricare le categorie:", error.message);
     }
-});
+}
 
 /**
  * Fetch domande con retry logic
  * Aspetta 5 secondi e riprova se status != 200 o response == undefined
  */
-async function getQuestionsWithRetry(amount, maxRetries = 5) {
-    const url = `https://opentdb.com/api.php?amount=${amount}`;
+async function getQuestionsWithRetry(amount, difficulty = "", type = "", category = "", maxRetries = 5) {
+    const params = new URLSearchParams();
+    params.append("amount", amount);
+
+    if (difficulty) params.append("difficulty", difficulty);
+    if (type) params.append("type", type);
+    if (category) params.append("category", category);
+
+    const url = `https://opentdb.com/api.php?${params.toString()}`;
     let lastError = null;
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
